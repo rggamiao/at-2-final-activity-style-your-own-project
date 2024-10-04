@@ -1,25 +1,253 @@
-@import 'variables';
-@import 'mixins';
-@import 'functions';
-@import 'base';
-@import 'layout';
 
-// Error handling directive
-@error "This is an example error message.";
+$primary-color: #4b0082; 
+$secondary-color: #d3a625; 
+$background-color: #111; 
+$text-color: #eaeaea; 
+$button-color: #4b0082; 
+$button-hover-color: #da20d1; 
+$font-size-base: 16px;
+$font-size-large: 24px;
+$font-size-xlarge: 36px;
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
 
-// Flow control example
-$themes: (
-  'gryffindor': #740001,
-  'slytherin': #1a472a,
-  'ravenclaw': #0e1a40,
-  'hufflepuff': #ecb939
-);
+$primary-font: 'Harry Potter', sans-serif;
+$secondary-font: 'Trebuchet MS', Arial, sans-serif;
 
-@each $house, $color in $themes {
-  .#{$house}-theme {
-    background-color: $color;
-    color: set-text-color($color);
+$container-max-width: 1100px;
+$border-radius: 5px;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-style {
+  display: inline-block;
+  border-radius: $border-radius;
+  padding: $spacing-small $spacing-medium;
+  margin: 3px;
+  background-color: $button-color;
+  color: $text-color;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $button-hover-color;
+    transform: scale(1.1);
   }
 }
 
-// Additional styles can be added here if needed
+@mixin background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+}
+
+@mixin gothic-container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+}
+
+@mixin responsive-font($min-size, $max-size) {
+  font-size: clamp($min-size, 2vw, $max-size);
+}
+
+// Functions
+@function lighten-color($color, $percentage) {
+  @return lighten($color, $percentage);
+}
+
+@function darken-color($color, $percentage) {
+  @return darken($color, $percentage);
+}
+
+@function calculate-rem($size) {
+  $rem-size: $size / 16px;
+  @return #{$rem-size}rem;
+}
+
+@function is-light($color) {
+  @return (lightness($color) > 50);
+}
+
+// Base styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $secondary-font;
+  line-height: 1.6;
+  color: $text-color;
+  min-height: 100vh;
+  position: relative;
+  background-color: $background-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $primary-font;
+  margin-bottom: $spacing-medium;
+  color: $secondary-color;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// Layout
+.page {
+  min-height: 100vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+#bg-video {
+  @include background-video;
+  opacity: 0.5;
+}
+
+.container {
+  @include gothic-container;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-large;
+}
+
+.start-container {
+  @extend .container;
+  border: 2px solid $secondary-color;
+
+  h1 {
+    @include responsive-font($font-size-large, $font-size-xlarge);
+    color: $secondary-color;
+  }
+
+  h4 {
+    @include responsive-font($font-size-base, $font-size-large);
+    margin-bottom: $spacing-medium;
+    color: lighten-color($text-color, 10%);
+  }
+
+  #startButton {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px $secondary-color);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+#quiz {
+  margin-top: $spacing-large;
+
+  h2 {
+    @include flex-center;
+    margin-bottom: $spacing-medium;
+
+    #questionNum {
+      margin-left: $spacing-small;
+      color: $secondary-color;
+    }
+  }
+
+  #options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-medium;
+    margin-top: $spacing-medium;
+
+    .option {
+      @include button-style;
+      width: 100%;
+    }
+  }
+
+  #nextButton {
+    @include button-style;
+    margin-top: $spacing-medium;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $spacing-medium;
+
+    button {
+      @include button-style;
+    }
+  }
+}
+
+#result {
+  margin-top: $spacing-large;
+  @include responsive-font($font-size-base, $font-size-large);
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+#houseImageContainer {
+  margin-top: $spacing-large;
+
+  img {
+    max-width: 200px;
+    border-radius: $border-radius;
+    box-shadow: 0 0 20px $secondary-color;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-medium;
+  }
+
+  #quiz {
+    #options {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+
+@error "This is an example error message.";
+
+$themes: ("gryffindor": #740001, "slytherin": #1a472a, "ravenclaw": #0e1a40, "hufflepuff": #ecb939);
+
+@each $house, $color in $themes {
+  .#{$house}-theme {
+    background-color: rgba($color, 0.7);
+    color: if(is-light($color), #000, #fff);
+    border: 2px solid lighten-color($color, 20%);
+  }
+}
+
+
+.gothic-text {
+  font-size: 1.2rem;
+  font-family: $primary-font;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gothic-border {
+  border: 2px solid $secondary-color;
+  padding: 20px;
+}
