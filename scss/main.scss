@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+@import 'base';
+@import 'layout';
+
+// Error handling directive
+@error "This is an example error message.";
+
+// Flow control example
+$themes: (
+  'gryffindor': #740001,
+  'slytherin': #1a472a,
+  'ravenclaw': #0e1a40,
+  'hufflepuff': #ecb939
+);
+
+@each $house, $color in $themes {
+  .#{$house}-theme {
+    background-color: $color;
+    color: set-text-color($color);
+  }
+}
+
+// Additional styles can be added here if needed

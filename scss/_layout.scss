@@ -1,0 +1,117 @@
+.container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .page {
+    @include page-style;
+  }
+  
+  #bg-video {
+    @include background-video;
+  }
+  
+  .start-container {
+    background-color: rgba($background-color, 0.7);
+    padding: 2rem;
+    border-radius: $border-radius;
+  
+    h1 {
+      font-size: calculate-rem(48px);
+      color: $secondary-color;
+    }
+  
+    h4 {
+      font-size: calculate-rem(24px);
+      margin-bottom: 1rem;
+    }
+  
+    #startButton {
+      cursor: pointer;
+      transition: transform $transition-speed ease;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  #quiz {
+    background-color: rgba($primary-color, 0.8);
+    padding: 2rem;
+    border-radius: $border-radius;
+    margin-top: 2rem;
+  
+    h2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+  
+      #questionNum {
+        margin-left: 0.5rem;
+      }
+    }
+  
+    #options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+  
+      .option {
+        @include button-style;
+        width: 100%;
+      }
+    }
+  
+    #nextButton {
+      margin-top: 1rem;
+    }
+  
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+  }
+  
+  #result {
+    margin-top: 2rem;
+    font-size: calculate-rem(24px);
+    font-weight: bold;
+  }
+  
+  #houseImageContainer {
+    margin-top: 2rem;
+  
+    img {
+      max-width: 200px;
+      border-radius: $border-radius;
+    }
+  }
+  
+  @include responsive(mobile) {
+    .start-container {
+      h1 {
+        font-size: calculate-rem(36px);
+      }
+  
+      h4 {
+        font-size: calculate-rem(18px);
+      }
+    }
+  
+    #quiz {
+      #options {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  
+  @include responsive(tablet) {
+    .container {
+      padding: 0 40px;
+    }
+  }
