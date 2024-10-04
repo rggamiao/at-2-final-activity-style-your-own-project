@@ -1,17 +1,217 @@
-/* Error: "This is an example error message."
- *     ,
- * 231 | @error "This is an example error message.";
- *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *     '
- *   scss\main.scss 231:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: "This is an example error message."\a     \2577 \a 231 \2502  @error "This is an example error message.";\d\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   scss\\main.scss 231:1  root stylesheet';
-}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.6;
+    color: #eaeaea;
+    min-height: 100vh;
+    position: relative;
+    background-color: #111;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Harry Potter", sans-serif;
+    margin-bottom: 16px;
+    color: #d3a625;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+  }
+  
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    opacity: 0.5;
+  }
+  
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  .start-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 2px solid #d3a625;
+  }
+  .start-container h1 {
+    font-size: clamp(24px, 2vw, 36px);
+    color: #d3a625;
+  }
+  .start-container h4 {
+    font-size: clamp(16px, 2vw, 24px);
+    margin-bottom: 16px;
+    color: #f7f7f7;
+  }
+  .start-container #startButton {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px #d3a625);
+  }
+  .start-container #startButton:hover {
+    transform: scale(1.1);
+  }
+  
+  #quiz {
+    margin-top: 24px;
+  }
+  #quiz h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  #quiz h2 #questionNum {
+    margin-left: 8px;
+    color: #d3a625;
+  }
+  #quiz #options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+  #quiz #options .option {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 3px;
+    background-color: #4b0082;
+    color: #eaeaea;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  #quiz #options .option:hover {
+    background-color: #da20d1;
+    transform: scale(1.1);
+  }
+  #quiz #nextButton {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 3px;
+    background-color: #4b0082;
+    color: #eaeaea;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+  }
+  #quiz #nextButton:hover {
+    background-color: #da20d1;
+    transform: scale(1.1);
+  }
+  #quiz .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  #quiz .button-container button {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 3px;
+    background-color: #4b0082;
+    color: #eaeaea;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #quiz .button-container button:hover {
+    background-color: #da20d1;
+    transform: scale(1.1);
+  }
+  
+  #result {
+    margin-top: 24px;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: bold;
+    color: #d3a625;
+  }
+  
+  #houseImageContainer {
+    margin-top: 24px;
+  }
+  #houseImageContainer img {
+    max-width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #d3a625;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 16px;
+    }
+    #quiz #options {
+      grid-template-columns: 1fr;
+    }
+  }
+  .gryffindor-theme {
+    background-color: rgba(116, 0, 1, 0.7);
+    color: #fff;
+    border: 2px solid #b30001;
+  }
+  
+  .slytherin-theme {
+    background-color: rgba(26, 71, 42, 0.7);
+    color: #fff;
+    border: 2px solid #2d8c52;
+  }
+  
+  .ravenclaw-theme {
+    background-color: rgba(14, 26, 64, 0.7);
+    color: #fff;
+    border: 2px solid #1a2b80;
+  }
+  
+  .hufflepuff-theme {
+    background-color: rgba(236, 185, 57, 0.7);
+    color: #000;
+    border: 2px solid #f1cb6d;
+  }
+  
+  .gothic-text {
+    font-size: 1.2rem;
+    font-family: "Harry Potter", sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gothic-border {
+    border: 2px solid #d3a625;
+    padding: 20px;
+  }
