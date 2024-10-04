@@ -11,29 +11,26 @@
 <body>
   <article id="startPage" class="page">
     <video autoplay muted loop id="bg-video">
-      <source src="/assets/the Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227).mp4" type="video/mp4" alt="Your browser does not support mp4 video">
-      
+      <source src="assets/Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227) (1).mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
     </video>
     <div class="start-container">
-      
       <h1>Welcome to Hogwarts!</h1>
       <h4>Click the hat below to get sorted</h4>
       <img id="startButton" src="assets/SortingHatImage.png" onclick="startQuiz()" alt="Sorting Hat by Baltofan95 on DeviantArt">
-     
     </div>
-  
   </article>
 
   <div id="quizPage" class="page" style="display: none;">
     <video autoplay muted loop id="bg-video">
-      <source src="/assets/the Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227).mp4" type="video/mp4">
+      <source src="assets/Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227) (1).mp4" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
-    <section class="container">
+    <div class="container">
       <h1>Hogwarts Sorting Hat Game</h1>
-      <p class="sorter"> Which house do you belong to?</p>
+      <p class="sorter">Which house do you belong to?</p>
       <div id="quiz">
-        <h2>Question <div id="questionNum">1</div></h2>
+        <h2>Question <span id="questionNum">1</span></h2>
         <p id="question"></p>
         <div id="options">
           <button class="option" onclick="selectAnswer(this)"></button>
@@ -49,7 +46,7 @@
       </div>
       <div id="result"></div>
       <div id="houseImageContainer"></div> 
-    </section>
+    </div>
   </div>
 
   <script src="index.js"></script>

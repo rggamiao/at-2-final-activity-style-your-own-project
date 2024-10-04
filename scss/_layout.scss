@@ -2,20 +2,33 @@
     max-width: $container-max-width;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
   }
   
   .page {
     @include page-style;
+    position: relative;
   }
   
   #bg-video {
-    @include background-video;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
   }
   
   .start-container {
     background-color: rgba($background-color, 0.7);
     padding: 2rem;
     border-radius: $border-radius;
+    position: relative;
+    z-index: 2;
   
     h1 {
       font-size: calculate-rem(48px);
@@ -42,6 +55,8 @@
     padding: 2rem;
     border-radius: $border-radius;
     margin-top: 2rem;
+    position: relative;
+    z-index: 2;
   
     h2 {
       display: flex;
@@ -81,10 +96,14 @@
     margin-top: 2rem;
     font-size: calculate-rem(24px);
     font-weight: bold;
+    position: relative;
+    z-index: 2;
   }
   
   #houseImageContainer {
     margin-top: 2rem;
+    position: relative;
+    z-index: 2;
   
     img {
       max-width: 200px;
