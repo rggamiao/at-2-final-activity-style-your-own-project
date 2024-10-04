@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hogwarts Sorting Hat Game</title>
+  <link rel="icon" type="image/x-icon" href="assets/Anton-Gerasimenko-Harry-Potter-Sorting-Hat.16.png" alt="sorting hat image" title="Creator: Anton Gerasimenko from IconArchive">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+</head>
+<body>
+  <article id="startPage" class="page">
+    <video autoplay muted loop id="bg-video">
+      <source src="/assets/the Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227).mp4" type="video/mp4" alt="Your browser does not support mp4 video">
+      
+    </video>
+    <div class="start-container">
+      
+      <h1>Welcome to Hogwarts!</h1>
+      <h4>Click the hat below to get sorted</h4>
+      <img id="startButton" src="assets/SortingHatImage.png" onclick="startQuiz()" alt="Sorting Hat by Baltofan95 on DeviantArt">
+     
+    </div>
+  
+  </article>
+
+  <div id="quizPage" class="page" style="display: none;">
+    <video autoplay muted loop id="bg-video">
+      <source src="/assets/the Hogwarts Great Hall with moving candles, in the style of Lost (1712954124227).mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <section class="container">
+      <h1>Hogwarts Sorting Hat Game</h1>
+      <p class="sorter"> Which house do you belong to?</p>
+      <div id="quiz">
+        <h2>Question <div id="questionNum">1</div></h2>
+        <p id="question"></p>
+        <div id="options">
+          <button class="option" onclick="selectAnswer(this)"></button>
+          <button class="option" onclick="selectAnswer(this)"></button>
+          <button class="option" onclick="selectAnswer(this)"></button>
+          <button class="option" onclick="selectAnswer(this)"></button>
+        </div>
+        <button id="nextButton" onclick="nextQuestion()">Next</button>
+        <div class="button-container">
+          <button id="resetButton" onclick="resetAnswer()">Reset Answer</button>
+          <button id="retryButton" onclick="retryQuiz()">Retry Quiz</button>
+        </div>
+      </div>
+      <div id="result"></div>
+      <div id="houseImageContainer"></div> 
+    </section>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
